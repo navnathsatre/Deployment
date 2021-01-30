@@ -1,0 +1,21 @@
+create --name nava
+conda activate nava
+conda install pandas
+conda deactivate
+pip install streamlit
+streamlit hello
+streamlit run test_sl.py
+cd ..
+conda info --envs
+conda activate nav
+pip install pandas-profiling
+pip install streamlit
+(for exist) Ctrl+c
+
+import pandas as pd
+import streamlit as st
+from sklearn.linear_model import LogisticRegression
+
+st.title('Model Deployment: Logistic Regression')
+
+st.sidebar.header('Use Input Parameters')

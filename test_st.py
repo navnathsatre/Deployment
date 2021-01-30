@@ -26,11 +26,17 @@ df=user_input_features()
 st.subheader('User input Parameters')
 st.write(df)
 
-loaded_model= load(open('C:/OneDrive/Desktop/Logistic_Model.sav','rb'))
+claimants=pd.read_csv("D:/DATA SCIENCE/Data sets/day15/claimants.csv")
+claimants.drop(["CASENUM"],inplace=True,axis=1)
+claimants = claimants.dropna()
 
-prediction= loaded_model.predict(df)
-prediction_proba = loaded_model.predict_proba(df)
+X=claimants.iloc[:,[1,2,3,4,5]]
+Y=claimants.iloc[:,0]
+clf=LogisticRegression()
+clf.fit(X,Y)
 
+prediction=clf.predict(df)
+prediction_proba=clf.predict_proba(df)
 
 st.subheader('Predicted Result')
 st.write('No' if prediction_proba[0][1]>0.5 else 'Yes')
